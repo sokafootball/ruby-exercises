@@ -10,16 +10,19 @@ def stock_picker(prices)
   prices.each_with_index do |value, index|
     break if index == prices.length - 1
     profit = prices[index + 1] - value
-    if (index + 2 == prices.length - 1)
-      profits_per_day[value] = profit
+    if (index + 1 == prices.length - 1)
+      profits_per_day[profit] = [index, index + 1]
       break
     end
+
     for i in (index + 2..prices.length - 1)
-      profit = prices[i] - value > profit ? prices[i] - value : profit
+      if (prices[i] - value > profit)
+        profit = prices[i] - value
+        profits_per_day[profit] = [index, i]
+      end
     end
-    profits_per_day[value] = profit
   end
-  return profits_per_day.max_by{|k,v| v}
+  return profits_per_day.max_by{|k,v| k}[1]
 end
 p stock_picker([17,3,6,9,15,8,6,1,10])
 #definisci hash PROFITS_PER_DAY
