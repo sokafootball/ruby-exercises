@@ -1,0 +1,32 @@
+#welcome the player to the game
+
+#INPUT FOR NEW GAME
+  #ask to press a button to start a game
+  #when he presses the button, start the game
+
+#START THE GAME
+  #change the status of the game
+  #set random starting player
+  #show the board
+  #show legend of buttons assigned to each of the nine squares
+  #while nobody won and there are empty cells
+    #run a turn
+  #end the game
+  #ask for another game
+
+
+#RUN A TURN
+#if it's player turn
+  #ask the player to choose an empty cell
+  #if the cell is full, ask him again until he chooses an empty one
+#else
+  #place the enemy token in a random empty cell
+
+
+#END THE GAME
+#if someone won
+  #show a winning message depending on who won
+#else
+  #show the draw message
+#change the game status
+#input for new game
