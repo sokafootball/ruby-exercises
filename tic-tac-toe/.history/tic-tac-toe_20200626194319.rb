@@ -1,5 +1,5 @@
 class Board
-  @@cells = Array.new(9," ")
+  @@cells = ["x","o","o","x","o","o"," ","o"," "]
 
   protected
   def Board.draw

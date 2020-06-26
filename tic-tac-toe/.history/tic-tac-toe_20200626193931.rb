@@ -1,12 +1,12 @@
 class Board
-  @@cells = Array.new(9," ")
+  @@cells = ["x"," "," ","x","o","o"," ","o"," "]
 
   protected
   def Board.draw
     puts "#{@@cells[0]}|#{@@cells[1]}|#{@@cells[2]}"
-    puts "------"
+    puts "______"
     puts "#{@@cells[3]}|#{@@cells[4]}|#{@@cells[5]}"
-    puts "------"
+    puts "___"
     puts "#{@@cells[6]}|#{@@cells[7]}|#{@@cells[8]}"
   end
 end
