@@ -1,12 +1,12 @@
 class Cell
   attr_accessor :symbol
-  def initialize(starting_symbol = " ")
+  def initialize(starting_symbol)
     @symbol = starting_symbol
   end
 end
 
 class Board
-  @@cells = Array.new(9, Cell.new)
+  @@cells = Array.new(9, Cell.new(" "))
 
   protected
 

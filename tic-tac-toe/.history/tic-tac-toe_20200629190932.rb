@@ -6,7 +6,7 @@ class Cell
 end
 
 class Board
-  @@cells = Array.new(9, Cell.new)
+  @@cells = Array.new(9, Cell.new("X"))
 
   protected
 

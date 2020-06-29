@@ -1,6 +1,6 @@
 class Cell
   attr_accessor :symbol
-  def initialize(starting_symbol = " ")
+  def initialize(starting_symbol = "X")
     @symbol = starting_symbol
   end
 end

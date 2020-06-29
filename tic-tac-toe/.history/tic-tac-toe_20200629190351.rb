@@ -1,15 +1,7 @@
-class Cell
-  attr_accessor :symbol
-  def initialize(starting_symbol = " ")
-    @symbol = starting_symbol
-  end
-end
-
 class Board
-  @@cells = Array.new(9, Cell.new)
+  @@cells = Array.new(9, Cell.new(" "))
 
   protected
-
   def Board.draw
     puts "#{@@cells[0].symbol}|#{@@cells[1].symbol}|#{@@cells[2].symbol}"
     puts "------"
@@ -19,4 +11,9 @@ class Board
   end
 end
 
-Board.draw
+class Cell
+  attr_accessor :symbol
+  def initialize(starting_symbol)
+    @symbol = starting_symbol
+  end
+end
