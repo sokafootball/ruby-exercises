@@ -27,13 +27,10 @@ class Game
   @@game_status = "OFF"
   @@moving_player
 
-  def Game.new_game
+  def new_game
     puts "Welcome to Tic Tac Toe!\n\n\n"
-    Game.choose_starting_player
-  end
 
-  def Game.choose_starting_player
-    @@moving_player = @@players.sample
+
   end
 end
 
