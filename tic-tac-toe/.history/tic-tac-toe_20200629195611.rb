@@ -52,10 +52,6 @@ class Game
       Game.run_turn
     end
   end
-
-  def Game.run_turn
-
-  end
 end
 
 Game.set_new_game

@@ -48,13 +48,7 @@ class Game
   end
 
   def Game.run_game
-    while (there_is_space && winning_player == nil) do
-      Game.run_turn
-    end
-  end
-
-  def Game.run_turn
-
+    while (there_is_space && winning_player == nil)
   end
 end
 

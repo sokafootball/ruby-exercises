@@ -32,8 +32,8 @@ end
 class Game
   private
   @@players = ["HUMAN", "COMPUTER"]
-  @@moving_player = nil
-  @@winning_player = nil
+  @@moving_player
+  @@winning_player
 
   def Game.set_new_game
     puts "Welcome to Tic Tac Toe!\n\n\n"
@@ -48,12 +48,6 @@ class Game
   end
 
   def Game.run_game
-    while (there_is_space && winning_player == nil) do
-      Game.run_turn
-    end
-  end
-
-  def Game.run_turn
 
   end
 end

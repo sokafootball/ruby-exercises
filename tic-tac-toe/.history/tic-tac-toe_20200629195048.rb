@@ -31,31 +31,19 @@ end
 
 class Game
   private
-  @@players = ["HUMAN", "COMPUTER"]
-  @@moving_player = nil
-  @@winning_player = nil
+  @@players = ["PLAYER", "COMPUTER"]
+  @@moving_player
 
-  def Game.set_new_game
+  def Game.new_game
     puts "Welcome to Tic Tac Toe!\n\n\n"
     Game.choose_starting_player
-    puts "You can select where to put your token using the corresponding number:\n\n"
+    puts "you can select where to put your token using the corresponding number!\n\n"
     Board.draw_legend
-    Game.run_game
   end
 
   def Game.choose_starting_player
     @@moving_player = @@players.sample
   end
-
-  def Game.run_game
-    while (there_is_space && winning_player == nil) do
-      Game.run_turn
-    end
-  end
-
-  def Game.run_turn
-
-  end
 end
 
-Game.set_new_game
+Game.new_game
