@@ -1,3 +1,5 @@
+require 'pry'
+
 module Constants
   EMPTY_CELL = " "
   PLAYER = "PLAYER"
@@ -14,6 +16,7 @@ class Cell
 end
 
 class Board
+
   @@cells = Array.new(9)
   for i in (0..8)
     @@cells[i] = Cell.new

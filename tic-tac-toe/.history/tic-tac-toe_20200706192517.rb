@@ -1,9 +1,7 @@
+require 'pry'
+
 module Constants
   EMPTY_CELL = " "
-  PLAYER = "PLAYER"
-  COMPUTER = "COMPUTER"
-  PLAYER_SYMBOL = "O"
-  COMPUTER_SYMBOL = "X"
 end
 
 class Cell
@@ -14,6 +12,7 @@ class Cell
 end
 
 class Board
+
   @@cells = Array.new(9)
   for i in (0..8)
     @@cells[i] = Cell.new
@@ -57,9 +56,11 @@ end
 class Game
 
   private
-  @@players = [Constants::PLAYER, Constants::COMPUTER]
+  @@players = ["HUMAN", "COMPUTER"]
   @@moving_player = nil
   @@winning_player = nil
+  PLAYER_SYMBOL = "O"
+  COMPUTER_SYMBOL = "X"
 
   def Game.set_new_game
     puts "Welcome to Tic Tac Toe!\n\n\n"
@@ -85,9 +86,9 @@ class Game
   end
 
   def Game.end_game
-    if (@@winning_player == Constants::PLAYER)
+    if (@@winning_player == "HUMAN")
       puts "You won!"
-    elsif (@@winning_player == Constants::COMPUTER)
+    elsif
       puts "You lost!"
     else
       puts "It's a draw!"
@@ -98,12 +99,12 @@ class Game
   end
 
   def Game.run_turn
-    if @@moving_player == Constants::PLAYER
+    if @@moving_player == "HUMAN"
       run_player_turn
     else
       run_computer_turn
     end
-    @@moving_player = @@moving_player == Constants::PLAYER ? Constants::COMPUTER : Constants::PLAYER
+    @@moving_player = @@moving_player == "HUMAN" ? "COMPUTER" : "HUMAN"
   end
 
   def Game.run_player_turn
@@ -113,7 +114,7 @@ class Game
         puts "That cell is not free, choose another one."
         chosen_cell = gets.chomp.to_i - 1
       end
-      Board.cells[chosen_cell].symbol = Constants::PLAYER_SYMBOL
+      Board.cells[chosen_cell].symbol = PLAYER_SYMBOL
   end
 
   def Game.run_computer_turn
@@ -123,14 +124,14 @@ class Game
       @chosen_cell = rand(9)
       break if Board.cells[@chosen_cell].symbol == Constants::EMPTY_CELL
     end
-    Board.cells[@chosen_cell].symbol = Constants::COMPUTER_SYMBOL
+    Board.cells[@chosen_cell].symbol = COMPUTER_SYMBOL
   end
 
   def Game.set_winner(token)
-    if token == Constants::PLAYER_SYMBOL
-      @@winning_player = Constants::PLAYER
+    if token == PLAYER_SYMBOL
+      @@winning_player = "HUMAN"
     else
-      @@winning_player = Constants::COMPUTER
+      @@winning_player = "COMPUTER"
     end
   end
 
@@ -141,9 +142,9 @@ class Game
     Game.set_winner(Board.cells[6].symbol) if (Board.cells[6].symbol != Constants::EMPTY_CELL && Board.cells[6].symbol ==  Board.cells[7].symbol && Board.cells[6].symbol == Board.cells[8].symbol)
     #check columns
     Game.set_winner(Board.cells[0].symbol) if (Board.cells[0].symbol != Constants::EMPTY_CELL && Board.cells[0].symbol ==  Board.cells[3].symbol && Board.cells[0].symbol == Board.cells[6].symbol)
-    Game.set_winner(Board.cells[1].symbol) if (Board.cells[1].symbol != Constants::EMPTY_CELL && Board.cells[1].symbol ==  Board.cells[4].symbol && Board.cells[1].symbol == Board.cells[7].symbol)
-    Game.set_winner(Board.cells[2].symbol) if (Board.cells[2].symbol != Constants::EMPTY_CELL && Board.cells[2].symbol ==  Board.cells[5].symbol && Board.cells[2].symbol == Board.cells[8].symbol)
-    #check diagonals
+    Game.set_winner(Board.cells[1].symbol) if (Board.cells[1].symbol != Constants::EMPTY_CELL && Board.cells[1].symbol ==  Board.cells[4].symbol && Board.cells[0].symbol == Board.cells[7].symbol)
+    Game.set_winner(Board.cells[2].symbol) if (Board.cells[2].symbol != Constants::EMPTY_CELL && Board.cells[2].symbol ==  Board.cells[5].symbol && Board.cells[0].symbol == Board.cells[8].symbol)
+    #check diagonalsBoard.
     Game.set_winner(Board.cells[0].symbol) if (Board.cells[0].symbol != Constants::EMPTY_CELL && Board.cells[0].symbol ==  Board.cells[4].symbol && Board.cells[0].symbol == Board.cells[8].symbol)
     Game.set_winner(Board.cells[2].symbol) if (Board.cells[2].symbol != Constants::EMPTY_CELL && Board.cells[2].symbol ==  Board.cells[4].symbol && Board.cells[2].symbol == Board.cells[6].symbol)
   end

@@ -1,9 +1,9 @@
+require 'pry'
+
 module Constants
   EMPTY_CELL = " "
   PLAYER = "PLAYER"
   COMPUTER = "COMPUTER"
-  PLAYER_SYMBOL = "O"
-  COMPUTER_SYMBOL = "X"
 end
 
 class Cell
@@ -14,6 +14,7 @@ class Cell
 end
 
 class Board
+
   @@cells = Array.new(9)
   for i in (0..8)
     @@cells[i] = Cell.new
@@ -60,6 +61,8 @@ class Game
   @@players = [Constants::PLAYER, Constants::COMPUTER]
   @@moving_player = nil
   @@winning_player = nil
+  PLAYER_SYMBOL = "O"
+  COMPUTER_SYMBOL = "X"
 
   def Game.set_new_game
     puts "Welcome to Tic Tac Toe!\n\n\n"
@@ -113,7 +116,7 @@ class Game
         puts "That cell is not free, choose another one."
         chosen_cell = gets.chomp.to_i - 1
       end
-      Board.cells[chosen_cell].symbol = Constants::PLAYER_SYMBOL
+      Board.cells[chosen_cell].symbol = PLAYER_SYMBOL
   end
 
   def Game.run_computer_turn
@@ -123,11 +126,11 @@ class Game
       @chosen_cell = rand(9)
       break if Board.cells[@chosen_cell].symbol == Constants::EMPTY_CELL
     end
-    Board.cells[@chosen_cell].symbol = Constants::COMPUTER_SYMBOL
+    Board.cells[@chosen_cell].symbol = COMPUTER_SYMBOL
   end
 
   def Game.set_winner(token)
-    if token == Constants::PLAYER_SYMBOL
+    if token == PLAYER_SYMBOL
       @@winning_player = Constants::PLAYER
     else
       @@winning_player = Constants::COMPUTER
