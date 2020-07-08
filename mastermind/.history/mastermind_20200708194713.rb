@@ -10,6 +10,7 @@ class Game
 
   def self.generate_solution
     @@solution = SYMBOLS.shuffle.first(COMBINATION_LENGTH)
+    p @@solution
   end
 end
 
