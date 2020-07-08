@@ -13,7 +13,7 @@ class Game
     @@solution = SYMBOLS.shuffle.first(COMBINATION_LENGTH)
   end
 
-  def self.get_player_guess
+  def self.get_guess
     @@available_symbols = SYMBOLS
     while (@@player_guess.length != COMBINATION_LENGTH)
       puts "Choose symbol solution ##{@@player_guess.length + 1} from #{@@available_symbols}."
@@ -27,7 +27,6 @@ class Game
       puts "Your guess is #{@@player_guess}"
     end
   end
-  return @@player_guess
 end
 
 Game.ask_solution
