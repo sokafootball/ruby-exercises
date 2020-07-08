@@ -21,11 +21,12 @@ class Game
       until (@@available_symbols.include?(@@chosen_symbol))
         puts "#{@@chosen_symbol} is not available, choose from #{@@available_symbols}."
         @@chosen_symbol = gets.chomp.to_i
+        p "player chose #{@@chosen_symbol}"
       end
       @@player_guess << @@chosen_symbol
       @@available_symbols.delete(@@chosen_symbol)
-      puts "Your guess is #{@@player_guess}"
     end
+    p @@player_guess
   end
 end
 
