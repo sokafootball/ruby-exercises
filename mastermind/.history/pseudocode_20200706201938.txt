@@ -17,7 +17,3 @@ the player has 12 chances to guess the correct combination
 
 
 at the end of the game start another round
-
-phase2
-#################
-

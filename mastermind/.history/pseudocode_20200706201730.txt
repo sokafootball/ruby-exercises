@@ -10,14 +10,10 @@ the player has 12 chances to guess the correct combination
   temp array with 8 available letters tom pick from, deleting them
   the player is prompted for one of the available letters for first letter of combination
   then second letter, ecc
-  every letter chosen is added to a temp string shown on console
-  once he has chosen 4 letters the feedback is calculated and added to the string where there is the full report of previous combinations and feedbacks
+  every letter chosen is added to a string where there is the full report of previous combinations and feedbacks
+  once he has chosen 4 letters the feedback is calculated and added to the string
   check if he won or lost (12th attempt)
   if he didnt win print the report and ask again for the four letters
 
 
 at the end of the game start another round
-
-phase2
-#################
-
