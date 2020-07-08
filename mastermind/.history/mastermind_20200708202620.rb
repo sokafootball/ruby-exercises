@@ -14,8 +14,6 @@ class Game
     @@solution = SYMBOLS.shuffle.first(COMBINATION_LENGTH)
   end
 
-
-
   def self.get_player_guess
     @@available_symbols = SYMBOLS
     while (@@player_guess.length != COMBINATION_LENGTH)
