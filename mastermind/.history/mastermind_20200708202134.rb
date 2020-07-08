@@ -24,7 +24,6 @@ class Game
       end
       @@player_guess << @@chosen_symbol
       @@available_symbols.delete(@@chosen_symbol)
-      puts "Your guess is #{@@player_guess}"
     end
   end
 end

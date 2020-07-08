@@ -17,15 +17,14 @@ class Game
     @@available_symbols = SYMBOLS
     while (@@player_guess.length != COMBINATION_LENGTH)
       puts "Choose symbol solution ##{@@player_guess.length + 1} from #{@@available_symbols}."
-      @@chosen_symbol = gets.chomp.to_i
-      until (@@available_symbols.include?(@@chosen_symbol))
-        puts "#{@@chosen_symbol} is not available, choose from #{@@available_symbols}."
-        @@chosen_symbol = gets.chomp.to_i
+      @@chosen_solution = gets.chomp
+      unless (@@available_symbols.include?(@@chosen_solution))
+        puts "Your choice is not available, choose from #{@@available_symbols}."
+        @@chosen_solution = gets.chomp
       end
-      @@player_guess << @@chosen_symbol
-      @@available_symbols.delete(@@chosen_symbol)
-      puts "Your guess is #{@@player_guess}"
+      @@player_guess << @@chosen_solution
     end
+    p @@player_guess
   end
 end
 
