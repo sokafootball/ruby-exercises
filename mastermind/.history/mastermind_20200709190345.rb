@@ -39,6 +39,8 @@ class Game
     return @@feedback.sort!
   end
 
+
+
   def self.get_player_guess
     @@available_symbols = SYMBOLS
     while (@@player_guess.length != COMBINATION_LENGTH)

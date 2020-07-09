@@ -9,14 +9,14 @@ class Game
   NUMBER_OF_GUESSES = 12
   COMBINATION_LENGTH = 4
   NUMBER_OF_SYMBOLS = 8
-  FULL_MATCH = "A"
-  HALF_MATCH = "O"
-  NO_MATCH = "X"
+  FULL_MATCH = "V"
+  HALF_MATCH = "X"
+  NO_MATCH = "O"
   SYMBOLS = []
   (1..NUMBER_OF_SYMBOLS).each {|num| SYMBOLS << num}
 
   @@solution = Array.new(COMBINATION_LENGTH)
-  @@player_guess = Array.new()
+  @@player_guess = Array.new(COMBINATION_LENGTH)
   @@guesses_history = Array.new(NUMBER_OF_GUESSES)
 
   def self.generate_solution
@@ -35,9 +35,12 @@ class Game
       else
         @@feedback << NO_MATCH
       end
+      p @@feedback
     end
-    return @@feedback.sort!
+    puts "SOLUTION #{@@solution} GUESS #{player_guess} RESULT #{@@feedback}"
   end
+
+
 
   def self.get_player_guess
     @@available_symbols = SYMBOLS

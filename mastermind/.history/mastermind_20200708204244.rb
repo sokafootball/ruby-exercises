@@ -1,22 +1,16 @@
 class Game
-  def self.test
-    Game.generate_solution
-    player_gss = Game.get_player_guess
-    Game.calculate_feedback(player_gss)
-  end
-
   private
   NUMBER_OF_GUESSES = 12
   COMBINATION_LENGTH = 4
   NUMBER_OF_SYMBOLS = 8
-  FULL_MATCH = "A"
-  HALF_MATCH = "O"
-  NO_MATCH = "X"
+  FULL_MATCH = "V"
+  HALF_MATCH = "X"
+  NO_MATCH = "O"
   SYMBOLS = []
   (1..NUMBER_OF_SYMBOLS).each {|num| SYMBOLS << num}
 
   @@solution = Array.new(COMBINATION_LENGTH)
-  @@player_guess = Array.new()
+  @@player_guess = Array.new(COMBINATION_LENGTH)
   @@guesses_history = Array.new(NUMBER_OF_GUESSES)
 
   def self.generate_solution
@@ -24,7 +18,7 @@ class Game
   end
 
   def self.calculate_feedback(player_guess)
-    @@feedback = Array.new()
+    @@feedback = Array.new(COMBINATION_LENGTH)
     player_guess.each_with_index do |num, idx|
       if (@@solution.include?(num))
         if (idx == @@solution.index(num))
@@ -36,7 +30,7 @@ class Game
         @@feedback << NO_MATCH
       end
     end
-    return @@feedback.sort!
+    puts "SOLUTION #{@@solution} GUESS #{player_guess} RESULT #{@@feedback}"
   end
 
   def self.get_player_guess
@@ -54,8 +48,10 @@ class Game
     end
     return @@player_guess
   end
+
 end
 
-Game.test
-
+Game.generate_solution
+player_gss = Game.get_player_guess
+Game.calculate_feedback(player_gss)
 

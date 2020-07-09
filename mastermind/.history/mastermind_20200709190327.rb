@@ -36,8 +36,10 @@ class Game
         @@feedback << NO_MATCH
       end
     end
-    return @@feedback.sort!
+    p @@feedback.sort!
   end
+
+
 
   def self.get_player_guess
     @@available_symbols = SYMBOLS
