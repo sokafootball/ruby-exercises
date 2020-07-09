@@ -2,6 +2,7 @@ class Game
   def self.play
     self.print_welcome_msg
     self.start_game_loop
+  endculate_feedback(player_gss)
   end
 
   private

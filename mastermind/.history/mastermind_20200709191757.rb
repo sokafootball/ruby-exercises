@@ -2,6 +2,19 @@ class Game
   def self.play
     self.print_welcome_msg
     self.start_game_loop
+    while (@@guesses_history <= NUMBER_OF_GUESSES)
+      self.play_turn
+      if (@@player_guess == @@solution)
+        self.show_win_msg
+        break
+      end
+    end
+  end
+
+  def self.test
+    Game.generate_solution
+    player_gss = Game.get_player_guess
+    Game.calculate_feedback(player_gss)
   end
 
   private
@@ -17,16 +30,6 @@ class Game
   @@solution = Array.new(COMBINATION_LENGTH)
   @@player_guess = Array.new()
   @@guesses_history = Array.new()
-
-  def self.start_game_loop
-    while (@@guesses_history <= NUMBER_OF_GUESSES)
-      self.play_turn
-      if (@@player_guess == @@solution)
-        self.show_win_msg
-        break
-      end
-    end
-  end
 
   def self.print_welcome_msg
     puts "Welcome to Mastermind!"

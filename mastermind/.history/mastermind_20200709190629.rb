@@ -1,7 +1,10 @@
 class Game
   def self.play
-    self.print_welcome_msg
-    self.start_game_loop
+
+  def self.test
+    Game.generate_solution
+    player_gss = Game.get_player_guess
+    Game.calculate_feedback(player_gss)
   end
 
   private
@@ -16,27 +19,7 @@ class Game
 
   @@solution = Array.new(COMBINATION_LENGTH)
   @@player_guess = Array.new()
-  @@guesses_history = Array.new()
-
-  def self.start_game_loop
-    while (@@guesses_history <= NUMBER_OF_GUESSES)
-      self.play_turn
-      if (@@player_guess == @@solution)
-        self.show_win_msg
-        break
-      end
-    end
-  end
-
-  def self.print_welcome_msg
-    puts "Welcome to Mastermind!"
-    puts "The objective of the game is to guess the combination of #{COMBINATION_LENGTH} numbers from 1 to #{NUMBER_OF_SYMBOLS} within #{NUMBER_OF_GUESSES} guesses."
-    puts "Each guess will receive a feedback of symbols,
-     \"#{FULL_MATCH}\" for a correct number in the correct position,
-     \"#{HALF_MATCH}\" for a correct number in the wrong position,
-     \"#{NO_MATCH}\" for a wrong number."
-    puts "Good Luck!"
-  end
+  @@guesses_history = Array.new(NUMBER_OF_GUESSES)
 
   def self.generate_solution
     @@solution = SYMBOLS.shuffle.first(COMBINATION_LENGTH)
