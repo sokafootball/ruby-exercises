@@ -5,7 +5,7 @@ class Game
   end
 
   private
-  NUMBER_OF_GUESSES = 1
+  NUMBER_OF_GUESSES = 12
   COMBINATION_LENGTH = 4
   NUMBER_OF_SYMBOLS = 8
   FULL_MATCH = "A"
@@ -22,18 +22,17 @@ class Game
     loop do
       puts "------------------------------------------"
       self.generate_solution
-      while (@@guesses_history.length < NUMBER_OF_GUESSES)
+      while (@@guesses_history.length <= NUMBER_OF_GUESSES)
         self.play_turn
         if (@@player_guess == @@solution)
           self.show_win_msg
           break
         end
       end
-      self.show_lose_msg if @@guesses_history.length >= NUMBER_OF_GUESSES
+      self.show_lose_msg if @@guesses_history > NUMBER_OF_GUESSES
 
       puts "Press enter to start another game"
       gets
-      @@guesses_history = []
     end
   end
 
@@ -47,10 +46,6 @@ class Game
     puts "Good Luck!"
   end
 
-  def self.show_win_msg
-    puts "You won! Well done!"
-  end
-
   def self.show_lose_msg
     puts "You ran out of guesses, you lost!"
   end
@@ -62,7 +57,6 @@ class Game
 
   def self.generate_solution
     @@solution = SYMBOLS.shuffle.first(COMBINATION_LENGTH)
-    puts "#{@@solution}"
   end
 
   def self.print_guesses

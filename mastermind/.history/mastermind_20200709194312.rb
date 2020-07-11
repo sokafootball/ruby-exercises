@@ -5,7 +5,7 @@ class Game
   end
 
   private
-  NUMBER_OF_GUESSES = 1
+  NUMBER_OF_GUESSES = 12
   COMBINATION_LENGTH = 4
   NUMBER_OF_SYMBOLS = 8
   FULL_MATCH = "A"
@@ -14,7 +14,7 @@ class Game
   SYMBOLS = []
   (1..NUMBER_OF_SYMBOLS).each {|num| SYMBOLS << num}
 
-  @@solution = Array.new()
+  @@solution = Array.new(COMBINATION_LENGTH)
   @@player_guess = Array.new()
   @@guesses_history = Array.new()
 
@@ -22,33 +22,27 @@ class Game
     loop do
       puts "------------------------------------------"
       self.generate_solution
-      while (@@guesses_history.length < NUMBER_OF_GUESSES)
+      while (@@guesses_history <= NUMBER_OF_GUESSES)
         self.play_turn
         if (@@player_guess == @@solution)
           self.show_win_msg
           break
         end
       end
-      self.show_lose_msg if @@guesses_history.length >= NUMBER_OF_GUESSES
-
+      self.show_lose_msg if @@guesses_history > NUMBER_OF_GUESSES
       puts "Press enter to start another game"
       gets
-      @@guesses_history = []
     end
   end
 
   def self.print_welcome_msg
     puts "Welcome to Mastermind!"
     puts "The objective of the game is to guess the combination of #{COMBINATION_LENGTH} numbers from 1 to #{NUMBER_OF_SYMBOLS} within #{NUMBER_OF_GUESSES} guesses."
-    puts "Each guess will receive a feedback of symbols:
+    puts "Each guess will receive a feedback of symbols,
      \"#{FULL_MATCH}\" for a correct number in the correct position,
      \"#{HALF_MATCH}\" for a correct number in the wrong position,
      \"#{NO_MATCH}\" for a wrong number."
     puts "Good Luck!"
-  end
-
-  def self.show_win_msg
-    puts "You won! Well done!"
   end
 
   def self.show_lose_msg
@@ -56,17 +50,16 @@ class Game
   end
 
   def self.play_turn
-    @@guesses_history << {self.get_player_guess => self.calculate_feedback}
+    self.get_player_guess
+    @@guesses_history << {@@player_guess: self.calculate_feedback}
     self.print_guesses
   end
 
   def self.generate_solution
     @@solution = SYMBOLS.shuffle.first(COMBINATION_LENGTH)
-    puts "#{@@solution}"
   end
 
   def self.print_guesses
-    puts "__________________________________________\n\n"
     @@guesses_history.each_with_index do |guess, idx|
       puts "#{idx + 1}. #{guess.keys[0]} | #{guess.values[0]} \n"
     end
@@ -90,8 +83,8 @@ class Game
   end
 
   def self.get_player_guess
-    @@player_guess = []
-    @@available_symbols = SYMBOLS.values_at(0...NUMBER_OF_SYMBOLS)
+    @@player_guess.clear
+    @@available_symbols = SYMBOLS
     while (@@player_guess.length != COMBINATION_LENGTH)
       puts "Choose symbol solution ##{@@player_guess.length + 1} from #{@@available_symbols}."
       @@chosen_symbol = gets.chomp.to_i
@@ -107,6 +100,6 @@ class Game
   end
 end
 
-Game.play
+Game.test
 
 
