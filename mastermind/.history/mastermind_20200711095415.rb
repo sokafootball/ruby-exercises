@@ -62,6 +62,7 @@ class Game
 
   def self.generate_solution
     @@solution = SYMBOLS.shuffle.first(COMBINATION_LENGTH)
+    puts "#{@@solution}"
   end
 
   def self.print_guesses
