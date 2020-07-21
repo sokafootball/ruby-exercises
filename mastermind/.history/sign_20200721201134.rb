@@ -1,14 +1,9 @@
-require_relative "costants"
+require_relative "game_options"
 
 class Sign
 
-  @@INCLUSION_STATES = {
-
-  }
-
   attr_reader :char
   attr_accessor :positions_status
-  attr_accessor :inclusion_status
 
   def initialize(char)
     @char = char

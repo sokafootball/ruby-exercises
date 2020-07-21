@@ -1,10 +1,6 @@
-require_relative "costants"
+require_relative "options"
 
 class Sign
-
-  @@INCLUSION_STATES = {
-
-  }
 
   attr_reader :char
   attr_accessor :positions_status
