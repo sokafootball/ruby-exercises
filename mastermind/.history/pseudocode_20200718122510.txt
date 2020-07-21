@@ -64,13 +64,13 @@ per ogni pallino rosso in piu' rispetto ai colori in GIUSTO FORSE
     prendo quello con piu' posizioni provate e lo metto a GIUSTO FORSE
     setto tutti gli altri numeri a SBAGLIATO FORSE a quella posizione a meno che non siano gia' a SBAGLIATO SICURO
   altrimenti
-    metto un MAI PROVATO a INCLUSO FORSE e GIUSTO FORSE e tutti gli altri numeri a SBAGLIATO FORSE in quella posizione
+    metto un MAI PROVATO a INCLUSO FORSE e GIUSTO FORSE
 
 per ogni pallino rosso in meno rispetto ai GIUSTO
   prendo un GIUSTO FORSE con piu' posizioni provate e lo metto a SBAGLIATO FORSE
   metto tutti gli altri numeri che sono SBAGLIATO FORSE in quella posizione a MAI PROVATO
   partendo dalla prima combinazione se trovo una con questo numero
-    prendo un numero che non e' SBAGLIATO SICURO in quella posizione col maggior numero di posizioni provate e lo setto a GIUSTO FORSE
+    prendo un numero che non e' SBAGLIATO SICURO IN quella posizione col maggior numero di posizioni provate e lo setto a GIUSTO FORSE
     setto tutti gli altri numeri in quella posizione che sono in MAI PROVATO a SBAGLIATO FORSE
 
 
@@ -91,16 +91,12 @@ per ogni pallino sotto al 4
       prendo uno dei GIUSTO FORSE e lo metto a ESCLUSO FORSE
       tutti i numeri presenti nelle combinazioni precedenti con questo numero li imposto sulla posizione del GIUSTO FORSE a MAI PROVATO se sono in SBAGLIATO FORSE
     altrimenti
-      scelgo un numero in INCLUSO FORSE in posizione MAI PROVATA col numero minore di posizioni provate (o in GIUSTO FORSE se non presente)
+      scelgo un numero in INCLUSO FORSE in posizione MAI PROVATA col numero minore di posizioni provate (o in GIUSTO FORSE se non presente) e lo setto a ESCLUSO FORSE
+      se non e' il primo tentativo
         per ogni tentativo precedente partendo dal primo
           se la combinazione ha questo NUMERO
-            scelgo un numero in ESCLUSO FORSE col minor numero di posizioni provate
-              lo cambio a INCLUSO FORSE
-              aggiorno lo stato della posizione in questa combinazione a SBAGLIATO FORSE a meno che non sia gia' a SBAGLIATO SICURO
-              in tutte le altre righe
-                se e' presente questo numero ed il numero di INCLUSI e'
-                  prendo un numero in INCLUSO FORSE e
-
+            se presente un numero in ESCLUSO FORSE
+              ne scelgo uno a caso e lo setto a INLCUSO FORSE aggiornado lo stato della posizione in questa combinazione a SBAGLIATO FORSE a meno che non sia gia' a SBAGLIATO SICURO ed ESCO
             altrimenti
               faccio la stessa cosa ma con un numero in INCLUSO FORSE ed ESCO
           se non trovo un caso del genere il numero a caso diventa INCLUSO SICURO e rifaccio il controllo per un altro numero

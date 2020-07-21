@@ -1,7 +1,0 @@
-phase 1
-################
-the computer randomly generates a combination of 4 out of 8 colors(letters) (no repetition)
-
-
-the player has 12 chances to guess the correct combination
-at the end of the game start another round
