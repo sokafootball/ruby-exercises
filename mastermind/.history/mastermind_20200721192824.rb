@@ -1,4 +1,5 @@
-require_relative "sign.rb"
+require_relative "Symbol.rb"
+
 
 
 class Game

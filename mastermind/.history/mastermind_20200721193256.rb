@@ -1,5 +1,7 @@
 require_relative "sign.rb"
 
+sign = Sign.new("c")
+p sign.char
 
 class Game
   def self.play
