@@ -1,17 +1,12 @@
 require_relative "game_options"
 
 class Game
-
-
   def self.play
     self.print_welcome_msg
     self.start_game_loop
   end
 
   private
-
-  SYMBOLS = []
-  (1..Options::NUMBER_OF_SYMBOLS).each {|num| SYMBOLS << num}
 
   @@solution = Array.new()
   @@player_guess = Array.new()
@@ -60,7 +55,7 @@ class Game
   end
 
   def self.generate_solution
-    @@solution = SYMBOLS.shuffle.first(Options::COMBINATION_LENGTH)
+    @@solution = Options::SYMBOLS.shuffle.first(Options::COMBINATION_LENGTH)
   end
 
   def self.print_guesses

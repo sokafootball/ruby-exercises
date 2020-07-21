@@ -1,0 +1,8 @@
+module Options
+  NUMBER_OF_GUESSES = 12
+  COMBINATION_LENGTH = 4
+  NUMBER_OF_SYMBOLS = 8
+  FULL_MATCH = "A"
+  HALF_MATCH = "O"
+  NO_MATCH = "X"
+end

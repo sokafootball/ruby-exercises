@@ -1,17 +1,10 @@
-require_relative "game_options"
-
 class Game
-
-
   def self.play
     self.print_welcome_msg
     self.start_game_loop
   end
 
   private
-
-  SYMBOLS = []
-  (1..Options::NUMBER_OF_SYMBOLS).each {|num| SYMBOLS << num}
 
   @@solution = Array.new()
   @@player_guess = Array.new()
@@ -21,14 +14,14 @@ class Game
     loop do
       puts "------------------------------------------"
       self.generate_solution
-      while (@@guesses_history.length < Options::NUMBER_OF_GUESSES)
+      while (@@guesses_history.length < NUMBER_OF_GUESSES)
         self.play_turn
         if (@@player_guess == @@solution)
           self.show_win_msg
           break
         end
       end
-      self.show_lose_msg if @@guesses_history.length >= Options::NUMBER_OF_GUESSES
+      self.show_lose_msg if @@guesses_history.length >= NUMBER_OF_GUESSES
 
       puts "Press enter to start another game"
       gets
@@ -38,11 +31,11 @@ class Game
 
   def self.print_welcome_msg
     puts "Welcome to Mastermind!"
-    puts "The objective of the game is to guess the combination of #{Options::COMBINATION_LENGTH} numbers from 1 to #{Options::NUMBER_OF_SYMBOLS} within #{Options::NUMBER_OF_GUESSES} guesses."
+    puts "The objective of the game is to guess the combination of #{COMBINATION_LENGTH} numbers from 1 to #{NUMBER_OF_SYMBOLS} within #{NUMBER_OF_GUESSES} guesses."
     puts "Each guess will receive a feedback of symbols:
-     \"#{Options::FULL_MATCH}\" for a correct number in the correct position,
-     \"#{Options::HALF_MATCH}\" for a correct number in the wrong position,
-     \"#{Options::NO_MATCH}\" for a wrong number."
+     \"#{FULL_MATCH}\" for a correct number in the correct position,
+     \"#{HALF_MATCH}\" for a correct number in the wrong position,
+     \"#{NO_MATCH}\" for a wrong number."
     puts "Good Luck!"
   end
 
@@ -60,7 +53,7 @@ class Game
   end
 
   def self.generate_solution
-    @@solution = SYMBOLS.shuffle.first(Options::COMBINATION_LENGTH)
+    @@solution = SYMBOLS.shuffle.first(COMBINATION_LENGTH)
   end
 
   def self.print_guesses
@@ -76,12 +69,12 @@ class Game
     @@player_guess.each_with_index do |num, idx|
       if (@@solution.include?(num))
         if (idx == @@solution.index(num))
-          @@feedback << Options::FULL_MATCH
+          @@feedback << FULL_MATCH
         else
-          @@feedback << Options::HALF_MATCH
+          @@feedback << HALF_MATCH
         end
       else
-        @@feedback << Options::NO_MATCH
+        @@feedback << NO_MATCH
       end
     end
     return @@feedback.sort!
@@ -89,8 +82,8 @@ class Game
 
   def self.get_player_guess
     @@player_guess = []
-    @@available_symbols = SYMBOLS.values_at(0...Options::NUMBER_OF_SYMBOLS)
-    while (@@player_guess.length != Options::COMBINATION_LENGTH)
+    @@available_symbols = SYMBOLS.values_at(0...NUMBER_OF_SYMBOLS)
+    while (@@player_guess.length != COMBINATION_LENGTH)
       puts "Choose symbol solution ##{@@player_guess.length + 1} from #{@@available_symbols}."
       @@chosen_symbol = gets.chomp.to_i
       until (@@available_symbols.include?(@@chosen_symbol))

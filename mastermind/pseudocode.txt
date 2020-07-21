@@ -34,8 +34,6 @@ phase2
   -SBAGLIATO FORSE
   -MAI PROVATO
 
-
-
 prova la combinazione del giocatore
 finche' ci sono spazi liberi
   se c'e' un numero INCLUSO SICURO
