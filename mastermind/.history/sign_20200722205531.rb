@@ -20,7 +20,7 @@ class Sign
   @inclusion_status
   @positions_status
 
-  def initialize(char = "?")
+  def initialize(char)
     @char = char
     @inclusion_status = InclusionStates::NOT_TRIED
     @positions_status = Array.new(Options::COMBINATION_LENGTH, PositionStates::NOT_TRIED)

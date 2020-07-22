@@ -11,8 +11,12 @@ class Sign
   end
 
   def exclude_if_possible
-    @positions_status.each { |pos_status| return if pos_status != PositionStates::MAYBE_WRONG && pos_status != PositionStates::SURE_WRONG }
-    @inclusion_status = @positions_status.include?(PositionStates::MAYBE_WRONG) ? PositionStates::MAYBE_WRONG : PositionStates::SURE_WRONG
+    @positions_status.each do |pos_status|
+      return if pos_status != PositionStates::MAYBE_WRONG || pos_status != PositionStates::SURE_WRONG
+    end
+    @positions_status.includes?(PositionStates::MAYBE_WRONG)
+    ? inclusion_status = PositionStates::MAYBE_WRONG
+    : inclusion_status = PositionStates::SURE_WRONG
   end
 
   private
@@ -20,7 +24,7 @@ class Sign
   @inclusion_status
   @positions_status
 
-  def initialize(char = "?")
+  def initialize(char)
     @char = char
     @inclusion_status = InclusionStates::NOT_TRIED
     @positions_status = Array.new(Options::COMBINATION_LENGTH, PositionStates::NOT_TRIED)
