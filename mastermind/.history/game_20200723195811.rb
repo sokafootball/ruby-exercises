@@ -10,14 +10,6 @@ class Game
     self.start_game_loop
   end
 
-  def self.player_guess
-    return @@player_guess
-  end
-
-  def self.solution
-    return @@solution
-  end
-
   private
 
   SIGNS = []
@@ -89,5 +81,11 @@ class Game
     return @@player_guess
   end
 
+  def player_guess
+    return @@player_guess
+  end
 
+  def solution
+    return @@solution
+  end
 end

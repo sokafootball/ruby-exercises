@@ -10,11 +10,11 @@ class Game
     self.start_game_loop
   end
 
-  def self.player_guess
+  def player_guess
     return @@player_guess
   end
 
-  def self.solution
+  def solution
     return @@solution
   end
 

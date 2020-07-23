@@ -1,21 +1,12 @@
 require_relative "costants"
 require_relative "board"
 require_relative "sign"
-require_relative "computer"
 
 class Game
 
   def self.play
     self.print_welcome_msg
     self.start_game_loop
-  end
-
-  def self.player_guess
-    return @@player_guess
-  end
-
-  def self.solution
-    return @@solution
   end
 
   private
@@ -64,12 +55,28 @@ class Game
   end
 
   def self.play_turn
-    Board.guesses_history << {self.get_player_guess => Computer.calculate_feedback}
+    Board.guesses_history << {self.get_player_guess => computer.calculate_feedback}
     Board.print_guesses
   end
 
   def self.generate_solution
     @@solution = SIGNS.shuffle.first(Options::COMBINATION_LENGTH).map {|sign| sign.char}
+  end
+
+  def self.calculate_feedback()
+    @@feedback = Array.new()
+    @@player_guess.each_with_index do |sign, idx|
+      if (@@solution.include?(sign))
+        if (idx == @@solution.index(sign))
+          @@feedback << UI::FULL_MATCH
+        else
+          @@feedback << UI::HALF_MATCH
+        end
+      else
+        @@feedback << UI::NO_MATCH
+      end
+    end
+    return @@feedback.sort!
   end
 
   def self.get_player_guess
@@ -88,6 +95,4 @@ class Game
     end
     return @@player_guess
   end
-
-
 end

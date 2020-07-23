@@ -10,14 +10,6 @@ class Game
     self.start_game_loop
   end
 
-  def self.player_guess
-    return @@player_guess
-  end
-
-  def self.solution
-    return @@solution
-  end
-
   private
 
   SIGNS = []
@@ -64,7 +56,7 @@ class Game
   end
 
   def self.play_turn
-    Board.guesses_history << {self.get_player_guess => Computer.calculate_feedback}
+    Board.guesses_history << {self.get_player_guess => computer.calculate_feedback}
     Board.print_guesses
   end
 
@@ -89,5 +81,7 @@ class Game
     return @@player_guess
   end
 
-
+  def player_guess
+    return @@player_guess
+  end
 end
