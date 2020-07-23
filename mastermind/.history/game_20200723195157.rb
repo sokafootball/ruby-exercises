@@ -39,7 +39,7 @@ class Game
   def self.print_welcome_msg
     puts "Welcome to Mastermind!"
     puts "The objective of the game is to guess the combination of #{Options::COMBINATION_LENGTH} numbers from 1 to #{Options::NUMBER_OF_SIGNS} within #{Options::NUMBER_OF_GUESSES} guesses."
-    puts "Each guess will receive a feedback of signs:
+    puts "Each guess will receive a feedback of SIGNS:
      \"#{UI::FULL_MATCH}\" for a correct number in the correct position,
      \"#{UI::HALF_MATCH}\" for a correct number in the wrong position,
      \"#{UI::NO_MATCH}\" for a wrong number."

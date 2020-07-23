@@ -39,7 +39,7 @@ class Game
   def self.print_welcome_msg
     puts "Welcome to Mastermind!"
     puts "The objective of the game is to guess the combination of #{Options::COMBINATION_LENGTH} numbers from 1 to #{Options::NUMBER_OF_SIGNS} within #{Options::NUMBER_OF_GUESSES} guesses."
-    puts "Each guess will receive a feedback of signs:
+    puts "Each guess will receive a feedback of SIGNS:
      \"#{UI::FULL_MATCH}\" for a correct number in the correct position,
      \"#{UI::HALF_MATCH}\" for a correct number in the wrong position,
      \"#{UI::NO_MATCH}\" for a wrong number."
@@ -60,14 +60,14 @@ class Game
   end
 
   def self.generate_solution
-    @@solution = SIGNS.shuffle.first(Options::COMBINATION_LENGTH).map {|sign| sign.char}
+    @@solution = SIGNS.shuffle.first(Options::COMBINATION_LENGTH)
   end
 
   def self.calculate_feedback()
     @@feedback = Array.new()
-    @@player_guess.each_with_index do |sign, idx|
-      if (@@solution.include?(sign))
-        if (idx == @@solution.index(sign))
+    @@player_guess.each_with_index do |num, idx|
+      if (@@solution.include?(num))
+        if (idx == @@solution.index(num))
           @@feedback << UI::FULL_MATCH
         else
           @@feedback << UI::HALF_MATCH
@@ -81,16 +81,16 @@ class Game
 
   def self.get_player_guess
     @@player_guess = []
-    @@available_signs = SIGNS.map {|sign| sign.char}
+    @@available_SIGNS = SIGNS.map {|sign| sign.char}
     while (@@player_guess.length != Options::COMBINATION_LENGTH)
-      puts "Choose symbol solution ##{@@player_guess.length + 1} from #{@@available_signs}."
+      puts "Choose symbol solution ##{@@player_guess.length + 1} from #{@@available_SIGNS}."
       @@chosen_symbol = gets.chomp.to_i
-      until (@@available_signs.include?(@@chosen_symbol))
-        puts "#{@@chosen_symbol} is not available, choose from #{@@available_signs}."
+      until (@@available_SIGNS.include?(@@chosen_symbol))
+        puts "#{@@chosen_symbol} is not available, choose from #{@@available_SIGNS}."
         @@chosen_symbol = gets.chomp.to_i
       end
       @@player_guess << @@chosen_symbol
-      @@available_signs.delete(@@chosen_symbol)
+      @@available_SIGNS.delete(@@chosen_symbol)
       puts "Your guess is #{@@player_guess}"
     end
     return @@player_guess
