@@ -18,11 +18,11 @@ module Options
   NUMBER_OF_GUESSES = 12
   COMBINATION_LENGTH = 4
   NUMBER_OF_SYMBOLS = 8
-end
-
-module UI
-  SEPARATOR = "__________________________________________\n\n"
   FULL_MATCH = "A"
   HALF_MATCH = "O"
   NO_MATCH = "X"
+end
+
+module Misc
+  SEPARATOR = ""__________________________________________\n\n""
 end

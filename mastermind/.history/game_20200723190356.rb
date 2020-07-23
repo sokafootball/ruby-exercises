@@ -18,7 +18,7 @@ class Game
 
   def self.start_game_loop
     loop do
-      puts UI::SEPARATOR
+      puts "------------------------------------------"
       self.generate_solution
       while (@@guesses_history.length < Options::NUMBER_OF_GUESSES)
         self.play_turn
@@ -39,9 +39,9 @@ class Game
     puts "Welcome to Mastermind!"
     puts "The objective of the game is to guess the combination of #{Options::COMBINATION_LENGTH} numbers from 1 to #{Options::NUMBER_OF_SYMBOLS} within #{Options::NUMBER_OF_GUESSES} guesses."
     puts "Each guess will receive a feedback of symbols:
-     \"#{UI::FULL_MATCH}\" for a correct number in the correct position,
-     \"#{UI::HALF_MATCH}\" for a correct number in the wrong position,
-     \"#{UI::NO_MATCH}\" for a wrong number."
+     \"#{Options::FULL_MATCH}\" for a correct number in the correct position,
+     \"#{Options::HALF_MATCH}\" for a correct number in the wrong position,
+     \"#{Options::NO_MATCH}\" for a wrong number."
     puts "Good Luck!"
   end
 
@@ -75,12 +75,12 @@ class Game
     @@player_guess.each_with_index do |num, idx|
       if (@@solution.include?(num))
         if (idx == @@solution.index(num))
-          @@feedback << UI::FULL_MATCH
+          @@feedback << Options::FULL_MATCH
         else
-          @@feedback << UI::HALF_MATCH
+          @@feedback << Options::HALF_MATCH
         end
       else
-        @@feedback << UI::NO_MATCH
+        @@feedback << Options::NO_MATCH
       end
     end
     return @@feedback.sort!

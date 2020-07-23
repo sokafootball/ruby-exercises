@@ -18,7 +18,7 @@ class Game
 
   def self.start_game_loop
     loop do
-      puts UI::SEPARATOR
+      puts "------------------------------------------"
       self.generate_solution
       while (@@guesses_history.length < Options::NUMBER_OF_GUESSES)
         self.play_turn
