@@ -5,12 +5,9 @@
 require_relative "costants"
 
 class Board
+  attr_accessor :guesses_history
 
-  def self.guesses_history
-    return @guesses_history
-  end
-
-  def self.reset_guesses
+  def initialise
     @guesses_history = Array.new()
   end
 
@@ -24,6 +21,6 @@ class Board
 
   private
 
-  @guesses_history = Array.new()
+  @guesses_history
 
 end

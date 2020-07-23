@@ -15,23 +15,24 @@ class Game
 
   @@solution = Array.new()
   @@player_guess = Array.new()
+  @@guesses_history = Array.new()
 
   def self.start_game_loop
     loop do
       puts UI::SEPARATOR
       self.generate_solution
-      while (Board.guesses_history.length < Options::NUMBER_OF_GUESSES)
+      while (@@guesses_history.length < Options::NUMBER_OF_GUESSES)
         self.play_turn
         if (@@player_guess == @@solution)
           self.show_win_msg
           break
         end
       end
-      self.show_lose_msg if Board.guesses_history.length >= Options::NUMBER_OF_GUESSES
+      self.show_lose_msg if @@guesses_history.length >= Options::NUMBER_OF_GUESSES
 
       puts "Press enter to start another game"
       gets
-      Board.reset_guesses
+      Board.guesses_history = []
     end
   end
 
@@ -61,6 +62,14 @@ class Game
 
   def self.generate_solution
     @@solution = SYMBOLS.shuffle.first(Options::COMBINATION_LENGTH)
+  end
+
+  def self.print_guesses
+    puts "__________________________________________\n\n"
+    Board.guesses_history.each_with_index do |guess, idx|
+      puts "#{idx + 1}. #{guess.keys[0]} | #{guess.values[0]} \n"
+    end
+    puts "__________________________________________\n\n"
   end
 
   def self.calculate_feedback()

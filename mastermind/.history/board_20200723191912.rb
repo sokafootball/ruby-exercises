@@ -24,6 +24,6 @@ class Board
 
   private
 
-  @guesses_history = Array.new()
+  @guesses_history
 
 end

@@ -5,14 +5,7 @@
 require_relative "costants"
 
 class Board
-
-  def self.guesses_history
-    return @guesses_history
-  end
-
-  def self.reset_guesses
-    @guesses_history = Array.new()
-  end
+  attr_accessor :guesses_history
 
   def self.print_guesses
     puts UI::SEPARATOR
@@ -24,6 +17,6 @@ class Board
 
   private
 
-  @guesses_history = Array.new()
+  @guesses_history
 
 end

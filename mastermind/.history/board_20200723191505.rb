@@ -10,7 +10,11 @@ class Board
     return @guesses_history
   end
 
-  def self.reset_guesses
+  def self.guesses_history=
+    return @guesses_history
+  end
+
+  def initialise
     @guesses_history = Array.new()
   end
 
@@ -24,6 +28,6 @@ class Board
 
   private
 
-  @guesses_history = Array.new()
+  @guesses_history
 
 end

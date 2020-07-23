@@ -14,6 +14,10 @@ class Board
     @guesses_history = Array.new()
   end
 
+  def initialise
+    @guesses_history = Array.new()
+  end
+
   def self.print_guesses
     puts UI::SEPARATOR
     @guesses_history.each_with_index do |guess, idx|
@@ -24,6 +28,6 @@ class Board
 
   private
 
-  @guesses_history = Array.new()
+  @guesses_history
 
 end

@@ -15,6 +15,7 @@ class Game
 
   @@solution = Array.new()
   @@player_guess = Array.new()
+  #@@guesses_history = Array.new()
 
   def self.start_game_loop
     loop do
@@ -61,6 +62,14 @@ class Game
 
   def self.generate_solution
     @@solution = SYMBOLS.shuffle.first(Options::COMBINATION_LENGTH)
+  end
+
+  def self.print_guesses
+    puts "__________________________________________\n\n"
+    Board.guesses_history.each_with_index do |guess, idx|
+      puts "#{idx + 1}. #{guess.keys[0]} | #{guess.values[0]} \n"
+    end
+    puts "__________________________________________\n\n"
   end
 
   def self.calculate_feedback()
