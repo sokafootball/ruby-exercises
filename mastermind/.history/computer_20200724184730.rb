@@ -7,7 +7,7 @@ class Computer
 
   def self.calculate_feedback()
 
-    def self.solution
+    def solution
       return @@solution
     end
 

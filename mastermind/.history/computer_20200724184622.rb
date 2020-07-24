@@ -7,14 +7,14 @@ class Computer
 
   def self.calculate_feedback()
 
-    def self.solution
+    def solution
       return @@solution
     end
 
     @@feedback = Array.new()
     Game.player_guess.each_with_index do |sign, idx|
-      if (@@solution.include?(sign))
-        if (idx == @@solution.index(sign))
+      if (Game.solution.include?(sign))
+        if (idx == Game.solution.index(sign))
           @@feedback << UI::FULL_MATCH
         else
           @@feedback << UI::HALF_MATCH

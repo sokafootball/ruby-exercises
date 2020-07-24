@@ -19,15 +19,16 @@ class Game
   SIGNS = []
   (1..Options::NUMBER_OF_SIGNS).each {|num| SIGNS << Sign.new(num)}
 
+  @@solution = Array.new()
   @@player_guess = Array.new()
 
   def self.start_game_loop
     loop do
       puts UI::SEPARATOR
-      Computer.generate_solution
+      self.generate_solution
       while (Board.guesses_history.length < Options::NUMBER_OF_GUESSES)
         self.play_turn
-        if (@@player_guess == Computer.solution)
+        if (@@player_guess == @@solution)
           self.show_win_msg
           break
         end

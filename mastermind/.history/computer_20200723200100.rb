@@ -7,14 +7,14 @@ class Computer
 
   def self.calculate_feedback()
 
-    def self.solution
+    def solution
       return @@solution
     end
 
     @@feedback = Array.new()
     Game.player_guess.each_with_index do |sign, idx|
-      if (@@solution.include?(sign))
-        if (idx == @@solution.index(sign))
+      if (Game.solution.include?(sign))
+        if (idx == Game.solution.index(sign))
           @@feedback << UI::FULL_MATCH
         else
           @@feedback << UI::HALF_MATCH
@@ -26,13 +26,7 @@ class Computer
     return @@feedback.sort!
   end
 
-  def self.generate_solution
-    @@solution = Game::SIGNS.shuffle.first(Options::COMBINATION_LENGTH).map {|sign| sign.char}
-    p @@solution
-  end
-
   private
 
-  @@solution = Array.new()
-
+  @@solution
 end
