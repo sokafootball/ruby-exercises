@@ -104,9 +104,10 @@ class Game
   end
 
   def self.get_player_input(player_answer)
-    until ((0..Options::COMBINATION_LENGTH - @@player_feedback.length).include?(player_answer))
+    until ((0..Options::COMBINATION_LENGTH).include?(player_answer))
       puts "You have to give a number between 0 and #{Options::COMBINATION_LENGTH - @@player_feedback.length}!"
       player_answer = gets.chomp.to_i
+      puts player_answer
     end
     return player_answer
   end

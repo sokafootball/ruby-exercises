@@ -80,35 +80,21 @@ class Game
     return @@player_guess
   end
 
-  def self.get_player_feedback
-    @@player_feedback = []
-    self.ask_for_full_matches.times {@@player_feedback << UI::FULL_MATCH}
-    self.ask_for_half_matches.times {@@player_feedback << UI::HALF_MATCH}
-    while (@@player_feedback.length < Options::COMBINATION_LENGTH)
-      @@player_feedback << UI::NO_MATCH
+  def self.get_player_solution
+    @@available_signs = SIGNS.map {|sign| sign.char}
+    while (Player.solution.length != Options::COMBINATION_LENGTH)
+      puts "Choose symbol solution ##{@@player_guess.length + 1} from #{@@available_signs}."
+      @@chosen_symbol = gets.chomp.to_i
+      until (@@available_signs.include?(@@chosen_symbol))
+        puts "#{@@chosen_symbol} is not available, choose from #{@@available_signs}."
+        @@chosen_symbol = gets.chomp.to_i
+      end
+      @@player_guess << @@chosen_symbol
+      @@available_signs.delete(@@chosen_symbol)
+      puts "Your guess is #{@@player_guess}"
     end
-    return @@player_feedback
+    return @@player_guess
   end
 
-  def self.ask_for_full_matches
-    puts "How many are in the correct position?"
-    @@player_answer = gets.chomp.to_i
-    return self.get_player_input(@@player_answer)
-  end
-
-  def self.ask_for_half_matches
-    return 0 if @@player_feedback.length >= Options::COMBINATION_LENGTH
-    puts "How many are in the wrong position?"
-    @@player_answer = gets.chomp.to_i
-    return self.get_player_input(@@player_answer)
-  end
-
-  def self.get_player_input(player_answer)
-    until ((0..Options::COMBINATION_LENGTH - @@player_feedback.length).include?(player_answer))
-      puts "You have to give a number between 0 and #{Options::COMBINATION_LENGTH - @@player_feedback.length}!"
-      player_answer = gets.chomp.to_i
-    end
-    return player_answer
-  end
 
 end

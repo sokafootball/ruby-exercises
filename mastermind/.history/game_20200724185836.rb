@@ -20,6 +20,7 @@ class Game
   (1..Options::NUMBER_OF_SIGNS).each {|num| SIGNS << Sign.new(num)}
 
   @@player_guess = Array.new()
+  @@player_solution = Array.new()
 
   def self.start_game_loop
     loop do
@@ -78,37 +79,6 @@ class Game
       puts "Your guess is #{@@player_guess}"
     end
     return @@player_guess
-  end
-
-  def self.get_player_feedback
-    @@player_feedback = []
-    self.ask_for_full_matches.times {@@player_feedback << UI::FULL_MATCH}
-    self.ask_for_half_matches.times {@@player_feedback << UI::HALF_MATCH}
-    while (@@player_feedback.length < Options::COMBINATION_LENGTH)
-      @@player_feedback << UI::NO_MATCH
-    end
-    return @@player_feedback
-  end
-
-  def self.ask_for_full_matches
-    puts "How many are in the correct position?"
-    @@player_answer = gets.chomp.to_i
-    return self.get_player_input(@@player_answer)
-  end
-
-  def self.ask_for_half_matches
-    return 0 if @@player_feedback.length >= Options::COMBINATION_LENGTH
-    puts "How many are in the wrong position?"
-    @@player_answer = gets.chomp.to_i
-    return self.get_player_input(@@player_answer)
-  end
-
-  def self.get_player_input(player_answer)
-    until ((0..Options::COMBINATION_LENGTH - @@player_feedback.length).include?(player_answer))
-      puts "You have to give a number between 0 and #{Options::COMBINATION_LENGTH - @@player_feedback.length}!"
-      player_answer = gets.chomp.to_i
-    end
-    return player_answer
   end
 
 end

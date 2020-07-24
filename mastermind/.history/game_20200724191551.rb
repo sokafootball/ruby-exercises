@@ -82,30 +82,19 @@ class Game
 
   def self.get_player_feedback
     @@player_feedback = []
-    self.ask_for_full_matches.times {@@player_feedback << UI::FULL_MATCH}
-    self.ask_for_half_matches.times {@@player_feedback << UI::HALF_MATCH}
-    while (@@player_feedback.length < Options::COMBINATION_LENGTH)
-      @@player_feedback << UI::NO_MATCH
-    end
-    return @@player_feedback
+    self.ask_for_full_match.times do {@@player_feedback << UI:FULL_MATCH}
   end
 
-  def self.ask_for_full_matches
+  def self.ask_for_full_match
+    return if @@player_feedback.length >= Options::COMBINATION_LENGTH
     puts "How many are in the correct position?"
     @@player_answer = gets.chomp.to_i
     return self.get_player_input(@@player_answer)
   end
 
-  def self.ask_for_half_matches
-    return 0 if @@player_feedback.length >= Options::COMBINATION_LENGTH
-    puts "How many are in the wrong position?"
-    @@player_answer = gets.chomp.to_i
-    return self.get_player_input(@@player_answer)
-  end
-
   def self.get_player_input(player_answer)
-    until ((0..Options::COMBINATION_LENGTH - @@player_feedback.length).include?(player_answer))
-      puts "You have to give a number between 0 and #{Options::COMBINATION_LENGTH - @@player_feedback.length}!"
+    until ((0..Options::COMBINATION_LENGTH).include?(player_answer))
+      puts "You have to give a number between 0 and #{Options::COMBINATION_LENGTH}!"
       player_answer = gets.chomp.to_i
     end
     return player_answer
