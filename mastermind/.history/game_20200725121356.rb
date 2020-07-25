@@ -33,6 +33,7 @@ class Game
   end
 
   def self.play_guess_round
+
     Computer.generate_solution
       while (Board.guesses_history.length < Options::NUMBER_OF_GUESSES)
         self.play_turn
@@ -47,25 +48,13 @@ class Game
       Board.reset_guesses
   end
 
-  def self.play_master_round
-    ##ask the payer to think of a combination
-    #while the computer hasnt lost nor won
-      #make computer guess a combination
-      #print the computer guesses history
-      #get the player feedback
-    #show a winning or losing message
-    #reset everything that needs to
-    #go back to the beginning of the game loop
-    self.start_game_loop
-  end
-
   def self.ask_game_mode
     puts "Which role would you like to play?"
     puts "(1) I want to guess the Computer combination!"
     puts "(2) I want the Computer to guess my combination!"
     puts "Press the corresponding number and press Enter."
     @@game_mode = gets.chomp.to_i
-    while (@@game_mode != 1 && @@game_mode != 2)
+    until (@@game_mode != 1 && @@game_mode != 2)
       puts "1 and 2 are the only available options!"
       @@game_mode = gets.chomp.to_i
     end
