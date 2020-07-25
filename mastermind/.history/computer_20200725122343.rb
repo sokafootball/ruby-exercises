@@ -12,6 +12,7 @@ class Computer
   def self.calculate_feedback()
 
     @@feedback = Array.new()
+
     Game.player_guess.each_with_index do |sign, idx|
       if (@@solution.include?(sign))
         if (idx == @@solution.index(sign))

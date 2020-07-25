@@ -46,11 +46,8 @@ class Game
   end
 
   def self.combination_guessed?
-    if (@@current_guesser == UI::PLAYER_NAME)
-      return @@player_guess == Computer.solution
-    else
-      return Board.guesses_history[-1].values[0] == Array.new(Options::NUMBER_OF_SIGNS, UI::FULL_MATCH)
-    end
+    if (current_guesser == UI::PLAYER_NAME)
+      return @@player_guess == Computer.combination
   end
 
   def self.prepare_round
@@ -59,6 +56,30 @@ class Game
     else
       puts "Think of a combination of #{Options::NUMBER_OF_SIGNS} numbers between 1 and #{Options::NUMBER_OF_SIGNS} (repetition is not allowed!)."
     end
+  end
+
+  def self.play_master_round
+    ##ask the payer to think of a combination
+
+    #while the computer hasnt lost nor won
+    while (Board.guesses_history.length < Options::NUMBER_OF_GUESSES)
+      self.play_computer_turn
+      if (Board.guesses_history[-1].values[0] == Array.new(Options::NUMBER_OF_SIGNS, UI::FULL_MATCH))
+        self.show_win_msg
+        break
+      end
+    end
+    self.show_lose_msg if Board.guesses_history.length >= Options::NUMBER_OF_GUESSES
+    puts "Press enter to start another game"
+    gets
+    Board.reset_guesses
+      #make computer guess a combination
+      #print the computer guesses history
+      #get the player feedback
+    #show a winning or losing message
+    #reset everything that needs to
+    #go back to the beginning of the game loop
+    self.start_game_loop
   end
 
   def self.ask_game_mode
@@ -85,11 +106,11 @@ class Game
   end
 
   def self.show_win_msg
-    puts "#{@@current_guesser} guessed the combination!"
+    puts "You won! Well done!"
   end
 
   def self.show_lose_msg
-    puts "#{@@current_guesser} ran out of guesses and lost!"
+    puts "You ran out of guesses, you lost!"
   end
 
   def self.play_turn

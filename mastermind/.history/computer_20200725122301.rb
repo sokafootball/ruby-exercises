@@ -5,11 +5,11 @@ require_relative "game"
 
 class Computer
 
-  def self.solution
-    return @@solution
-  end
+  #def self.calculate_feedback()
 
-  def self.calculate_feedback()
+    def self.solution
+      return @@solution
+    end
 
     @@feedback = Array.new()
     Game.player_guess.each_with_index do |sign, idx|

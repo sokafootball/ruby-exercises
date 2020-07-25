@@ -46,7 +46,7 @@ class Game
   end
 
   def self.combination_guessed?
-    if (@@current_guesser == UI::PLAYER_NAME)
+    if (current_guesser == UI::PLAYER_NAME)
       return @@player_guess == Computer.solution
     else
       return Board.guesses_history[-1].values[0] == Array.new(Options::NUMBER_OF_SIGNS, UI::FULL_MATCH)
