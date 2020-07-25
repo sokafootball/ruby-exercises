@@ -29,11 +29,7 @@ class Game
       else
         self.play_master_round
       end
-    end
-  end
-
-  def self.play_guess_round
-    Computer.generate_solution
+      Computer.generate_solution
       while (Board.guesses_history.length < Options::NUMBER_OF_GUESSES)
         self.play_turn
         if (@@player_guess == Computer.solution)
@@ -42,21 +38,11 @@ class Game
         end
       end
       self.show_lose_msg if Board.guesses_history.length >= Options::NUMBER_OF_GUESSES
+
       puts "Press enter to start another game"
       gets
       Board.reset_guesses
-  end
-
-  def self.play_master_round
-    ##ask the payer to think of a combination
-    #while the computer hasnt lost nor won
-      #make computer guess a combination
-      #print the computer guesses history
-      #get the player feedback
-    #show a winning or losing message
-    #reset everything that needs to
-    #go back to the beginning of the game loop
-    self.start_game_loop
+    end
   end
 
   def self.ask_game_mode
@@ -65,7 +51,7 @@ class Game
     puts "(2) I want the Computer to guess my combination!"
     puts "Press the corresponding number and press Enter."
     @@game_mode = gets.chomp.to_i
-    while (@@game_mode != 1 && @@game_mode != 2)
+    until (@@game_mode != 1 && @@game_mode != 2)
       puts "1 and 2 are the only available options!"
       @@game_mode = gets.chomp.to_i
     end

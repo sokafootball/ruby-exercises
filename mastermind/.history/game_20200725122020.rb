@@ -49,6 +49,7 @@ class Game
 
   def self.play_master_round
     ##ask the payer to think of a combination
+    puts "you chose to be the master for the round"
     #while the computer hasnt lost nor won
       #make computer guess a combination
       #print the computer guesses history
