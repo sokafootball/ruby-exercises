@@ -20,7 +20,7 @@ class Game
   (1..Options::NUMBER_OF_SIGNS).each {|num| SIGNS << Sign.new(num)}
 
   @@player_guess = Array.new()
-  @@current_guesser = UI::PLAYER_NAME
+  @@current_guesser = UI:PLAYER_NAME
 
   def self.start_game_loop
     loop do
