@@ -41,7 +41,6 @@ class Hangman
   end
 end
 
-Hangman.show_guesses_left
 
 
 

@@ -18,10 +18,6 @@ class Hangman
     puts @@guessed_word
   end
 
-  def self.show_guesses_left
-    puts "You have #{@@guesses_left} guesses left."
-  end
-
   @@secret_word = self.pick_secret_word()
   @@guessed_word = Array.new(@@secret_word.length, "_").join
 
@@ -40,8 +36,7 @@ class Hangman
     self.show_lost_msg
   end
 end
-
-Hangman.show_guesses_left
-
+puts Hangman.pick_secret_word
+Hangman.show_guessed_word
 
 

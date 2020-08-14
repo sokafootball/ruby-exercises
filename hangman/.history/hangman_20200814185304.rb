@@ -15,20 +15,16 @@ class Hangman
   end
 
   def self.show_guessed_word
-    puts @@guessed_word
-  end
-
-  def self.show_guesses_left
-    puts "You have #{@@guesses_left} guesses left."
+    puts @@guessed_word.to_s
   end
 
   @@secret_word = self.pick_secret_word()
-  @@guessed_word = Array.new(@@secret_word.length, "_").join
+  @@guessed_word = Array.new(@@secret_word.length, "_")
 
   def self.play_game
     while (@@guesses_left >= 0)
       self.show_guessed_word
-      self.show_guesses_left
+      self.show_guesses
       self.ask_input
       self.update_guessed_word
       if (@@guessed_word == @@secret_word)
@@ -40,8 +36,7 @@ class Hangman
     self.show_lost_msg
   end
 end
-
-Hangman.show_guesses_left
-
+puts Hangman.pick_secret_word
+Hangman.show_guessed_word
 
 
