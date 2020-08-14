@@ -22,25 +22,24 @@ class Hangman
     puts "You have #{@@guesses_left} guesses left."
   end
 
-  def self.ask_letter
-    puts "Guess a letter!"
+  def self.ask_guessed_letter
     guessed_letter = gets.chomp.downcase
+    puts "Guess a letter!"
     until (@@available_letters.include?(guessed_letter))
-      puts "The letter you chose is either invalid or already chosen before, choose another one."
       guessed_letter = gets.chomp.downcase
+      puts "The letter you chose is either invalid or already chosen before, choose another one."
     end
     return guessed_letter
   end
 
   @@secret_word = self.pick_secret_word()
   @@guessed_word = Array.new(@@secret_word.length, "_").join
-  @@guessed_letter = ""
 
   def self.play_game
     while (@@guesses_left >= 0)
       self.show_guessed_word
       self.show_guesses_left
-      @@guessed_letter = self.ask_letter
+      self.ask_guessed_letter
       self.update_guessed_word
       if (@@guessed_word == @@secret_word)
         self.show_win_msg
@@ -52,7 +51,8 @@ class Hangman
   end
 end
 
-p Hangman.ask_letter
-
+x = gets.chomp
+puts "test"
+puts x
 
 

@@ -40,7 +40,7 @@ class Hangman
     while (@@guesses_left >= 0)
       self.show_guessed_word
       self.show_guesses_left
-      @@guessed_letter = self.ask_letter
+      self.ask_letter
       self.update_guessed_word
       if (@@guessed_word == @@secret_word)
         self.show_win_msg
