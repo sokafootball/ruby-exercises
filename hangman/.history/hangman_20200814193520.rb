@@ -36,11 +36,13 @@ class Hangman
     @@secret_word.split("").each_with_index do |letter, index|
       @@guessed_word[index] = letter if (letter == @@guessed_letter)
     end
+    puts @@guessed_word
   end
 
-  @@secret_word = self.pick_secret_word()
+  ##@@secret_word = self.pick_secret_word()
+  @@secret_word = "test"
   @@guessed_word = Array.new(@@secret_word.length, "_").join
-  @@guessed_letter = ""
+  @@guessed_letter = "t"
 
   def self.play_game
     while (@@guesses_left >= 0)

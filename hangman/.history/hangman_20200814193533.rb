@@ -36,6 +36,7 @@ class Hangman
     @@secret_word.split("").each_with_index do |letter, index|
       @@guessed_word[index] = letter if (letter == @@guessed_letter)
     end
+    puts @@guessed_word
   end
 
   @@secret_word = self.pick_secret_word()

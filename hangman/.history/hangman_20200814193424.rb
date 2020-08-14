@@ -34,7 +34,7 @@ class Hangman
 
   def self.update_guessed_word
     @@secret_word.split("").each_with_index do |letter, index|
-      @@guessed_word[index] = letter if (letter == @@guessed_letter)
+      p letter
     end
   end
 
