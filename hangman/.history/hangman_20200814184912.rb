@@ -35,8 +35,11 @@ class Hangman
     end
     self.show_lost_msg
   end
-end
 
-Hangman.show_guessed_word
+
+
+
+
+end
 
 

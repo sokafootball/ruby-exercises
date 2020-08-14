@@ -34,9 +34,13 @@ class Hangman
       @@guesses_left -= 1
     end
     self.show_lost_msg
-  end
-end
 
-Hangman.show_guessed_word
+  end
+
+
+
+
+
+end
 
 

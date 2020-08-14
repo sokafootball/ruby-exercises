@@ -37,6 +37,6 @@ class Hangman
   end
 end
 
-Hangman.show_guessed_word
+p Hangman.pick_secret_word
 
 

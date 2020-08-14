@@ -28,15 +28,16 @@ class Hangman
       self.ask_input
       self.update_guessed_word
       if (@@guessed_word == @@secret_word)
-        self.show_win_msg
-        break
-      end
       @@guesses_left -= 1
     end
-    self.show_lost_msg
-  end
-end
 
-Hangman.show_guessed_word
+
+  end
+
+
+
+
+
+end
 
 
