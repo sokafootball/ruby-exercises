@@ -46,7 +46,8 @@ class Hangman
     puts "You lost!"
   end
 
-  @@secret_word = self.pick_secret_word()
+  #@@secret_word = self.pick_secret_word()
+  @@secret_word = "ancona"
   @@guessed_word = Array.new(@@secret_word.length, "_").join
   @@guessed_letter = ""
 
@@ -66,7 +67,6 @@ class Hangman
     self.show_lost_msg if @@guesses_left <= 0
   end
 end
-
 Hangman.play_game
 
 
