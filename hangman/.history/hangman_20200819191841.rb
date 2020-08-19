@@ -1,3 +1,5 @@
+require 'json'
+
 class Hangman
 
   ALPHABET = ('a'..'z').to_a
@@ -73,8 +75,11 @@ end
 
 def self.save_and_exit
 
+end
 
-Hangman.play_game
+dumped_class = JSON.dump({:ciao => 1})
+p dumped_class
+#Hangman.play_game
 
 
 

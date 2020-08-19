@@ -73,6 +73,7 @@ end
 
 def self.save_and_exit
 
+end
 
 Hangman.play_game
 

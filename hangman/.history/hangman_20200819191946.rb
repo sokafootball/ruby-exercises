@@ -73,7 +73,7 @@ end
 
 def self.save_and_exit
 
-
+each_with_index
 Hangman.play_game
 
 

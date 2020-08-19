@@ -73,6 +73,9 @@ end
 
 def self.save_and_exit
 
+end
+
+p Marshal.dump(Hangman)
 
 Hangman.play_game
 

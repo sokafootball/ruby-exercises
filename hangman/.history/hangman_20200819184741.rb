@@ -73,8 +73,11 @@ end
 
 def self.save_and_exit
 
+end
 
-Hangman.play_game
+dumped_class = Marshal.dump(Hangman.class)
+p dumped_class
+#Hangman.play_game
 
 
 
