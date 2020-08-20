@@ -19,7 +19,7 @@ class Hangman
 
   def start_game
     puts "Welcome to Hangman!"
-    puts "Press Enter to start playing or type \"#{LOAD_COMMAND}\" to load the previous save game."
+    puts "Press Enter to start playing or type #{LOAD_COMMAND} to load the previous save game."
     player_input = gets.chomp.downcase
     load_game if player_input == LOAD_COMMAND
     play_game
@@ -59,7 +59,7 @@ class Hangman
   end
 
   def ask_input
-    puts "Guess a letter! (or type \"#{SAVE_COMMAND}\" to save and exit the game.)"
+    puts "Guess a letter! (or type #{SAVE_COMMAND} to save and exit the game.)"
     player_input = gets.chomp.downcase
     save_and_exit if player_input == SAVE_COMMAND
     until (@available_letters.include?(player_input))

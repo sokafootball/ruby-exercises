@@ -59,7 +59,7 @@ class Hangman
   end
 
   def ask_input
-    puts "Guess a letter! (or type \"#{SAVE_COMMAND}\" to save and exit the game.)"
+    puts "Guess a letter! (or type #{SAVE_COMMAND} to save and exit the game.)"
     player_input = gets.chomp.downcase
     save_and_exit if player_input == SAVE_COMMAND
     until (@available_letters.include?(player_input))
