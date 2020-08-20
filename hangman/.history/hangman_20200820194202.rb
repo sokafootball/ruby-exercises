@@ -7,13 +7,16 @@ class Hangman
   SAVE_COMMAND = "save"
   LOAD_COMMAND = "load"
   MIN_WORD_LENGTH = 5
-  MAX_WORD_LENGTH = 12
+  MAX_WORD_LENGTH = 9
 
   def initialize
     @available_letters = ALPHABET
     @guesses_left = MAX_GUESSES
-    @secret_word = pick_secret_word
+    @secret_word = pick_secret_word()
+    p @secret_word
+    puts @secret_word.length
     @guessed_word = Array.new(@secret_word.length, "_").join
+    puts @guessed_word
     @guessed_letter = ""
   end
 
