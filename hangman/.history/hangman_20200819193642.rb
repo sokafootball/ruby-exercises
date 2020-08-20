@@ -1,21 +1,20 @@
+require 'json'
+
 class Hangman
 
-  require 'json'
-  require 'yaml'
+  @secret_word = pick_secret_word()
+  @guessed_word = Array.new(@secret_word.length, "_").join
+  @guessed_letter = ""
 
   ALPHABET = ('a'..'z').to_a
   MAX_GUESSES = 12
   SAVE_COMMAND = "save"
-  LOAD_COMMAND = "load"
   MIN_WORD_LENGTH = 5
   MAX_WORD_LENGTH = 12
 
-  def initialize
+  def initalize
     @available_letters = ALPHABET
     @guesses_left = MAX_GUESSES
-    @secret_word = pick_secret_word()
-    @guessed_word = Array.new(@secret_word.length, "_").join
-    @guessed_letter = ""
   end
 
   def pick_secret_word
@@ -49,7 +48,6 @@ class Hangman
   def update_guessed_word
     @secret_word.split("").each_with_index do |letter, index|
       @guessed_word[index] = letter if (letter == @guessed_letter)
-    end
   end
 
   def show_win_msg
@@ -58,14 +56,6 @@ class Hangman
 
   def show_lost_msg
     puts "You lost! The word was #{@secret_word}"
-  end
-
-  def start_game
-    puts "Welcome to Hangman!"
-    puts "Press Enter to start playing or type #{LOAD_COMMAND} to load the previous save game."
-    player_input = gets.chomp.downcase
-    load_game if player_input == LOAD_COMMAND
-    play_game
   end
 
   def play_game
@@ -84,24 +74,13 @@ class Hangman
     show_lost_msg if @guesses_left <= 0
   end
 
-  def save_and_exit
-    puts "Saving game..."
-    save_game = YAML.dump(self)
-    File.write("save.yaml", save_game)
-    puts "Game saved succesfully. See you next time!"
-    exit
-  end
-
-  def load_game
-    save_game = File.open("save.yaml")
-    loaded_game = YAML.load(save_game)
-    loaded_game.play_game
-  end
-
-
-hangman = Hangman.new
-
-
-hangman.start_game
-
 end
+
+
+hangman = Hangman.new()
+
+
+hangman.play_game
+
+
+

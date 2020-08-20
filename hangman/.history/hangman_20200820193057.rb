@@ -96,6 +96,10 @@ class Hangman
     save_game = File.open("save.yaml")
     loaded_game = YAML.load(save_game)
     loaded_game.play_game
+    File.open('save.json') do |f|
+      hash = JSON.parse(f.read)  #***HERE***
+      p hash
+    end
   end
 
 

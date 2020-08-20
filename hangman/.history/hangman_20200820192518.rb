@@ -1,7 +1,6 @@
 class Hangman
 
   require 'json'
-  require 'yaml'
 
   ALPHABET = ('a'..'z').to_a
   MAX_GUESSES = 12
@@ -86,16 +85,21 @@ class Hangman
 
   def save_and_exit
     puts "Saving game..."
-    save_game = YAML.dump(self)
-    File.write("save.yaml", save_game)
+    save_game = JSON.dump(self)
+    #File.write("save.json", save_game)
+    File.open("save.json", "w") {|f| f.write save_game}
     puts "Game saved succesfully. See you next time!"
     exit
   end
 
   def load_game
-    save_game = File.open("save.yaml")
-    loaded_game = YAML.load(save_game)
-    loaded_game.play_game
+    #save_game = File.open("save.json")
+    #loaded_game = JSON.parse(save_game.read)
+    #loaded_game.play_game
+    #File.open('save.json') do |f|
+    #  hash = JSON.parse(f.read)  #***HERE***
+    #  p hash
+    #end
   end
 
 

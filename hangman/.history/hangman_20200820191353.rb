@@ -1,7 +1,6 @@
 class Hangman
 
   require 'json'
-  require 'yaml'
 
   ALPHABET = ('a'..'z').to_a
   MAX_GUESSES = 12
@@ -38,7 +37,7 @@ class Hangman
   def ask_input
     puts "Guess a letter! (or type #{SAVE_COMMAND} to save and exit the game.)"
     player_input = gets.chomp.downcase
-    save_and_exit if player_input == SAVE_COMMAND
+    save_and_exit() if player_input == SAVE_COMMAND
     until (@available_letters.include?(player_input))
       puts "The letter you chose is either invalid or already chosen before, choose another one."
       player_input = gets.chomp.downcase
@@ -64,8 +63,8 @@ class Hangman
     puts "Welcome to Hangman!"
     puts "Press Enter to start playing or type #{LOAD_COMMAND} to load the previous save game."
     player_input = gets.chomp.downcase
-    load_game if player_input == LOAD_COMMAND
-    play_game
+    load_game() if player_input == LOAD_COMMAND
+    play_game()
   end
 
   def play_game
@@ -86,20 +85,20 @@ class Hangman
 
   def save_and_exit
     puts "Saving game..."
-    save_game = YAML.dump(self)
-    File.write("save.yaml", save_game)
+    save_game = JSON.dump(self)
+    File.write("save.json", save_game)
     puts "Game saved succesfully. See you next time!"
     exit
   end
 
   def load_game
-    save_game = File.open("save.yaml")
-    loaded_game = YAML.load(save_game)
+    save_game = File.open("save.json")
+    loaded_game = JSON.parse(save_game)
     loaded_game.play_game
   end
 
 
-hangman = Hangman.new
+hangman = Hangman.new()
 
 
 hangman.start_game

@@ -1,0 +1,27 @@
+--- !ruby/object:Hangman
+available_letters:
+- b
+- d
+- e
+- h
+- i
+- j
+- k
+- l
+- n
+- o
+- q
+- r
+- t
+- u
+- v
+- w
+- x
+- y
+- z
+guesses_left: 5
+secret_word: 'Kawasaki
+
+'
+guessed_word: _a_asa___
+guessed_letter: c
